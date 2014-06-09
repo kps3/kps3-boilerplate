@@ -1,5 +1,4 @@
 ## Front-End Boilerplate ##
----
 
 More details on how it works and the backstory can be found at: http://kps3.com/thots/our-front-end-development-boilerplate
 
