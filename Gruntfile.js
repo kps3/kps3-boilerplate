@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 				tasks: ['uglify:js', 'copy:assets']
 			},
 			jsPlugins: {
-				files: '<%= sourcePath %>/<%= assetDir %>/js/plugins/*.js',
+				files: ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
 				tasks: ['uglify:jsPlugins', 'copy:assets']
 			},
 			sass: {
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					'<%= sourcePath %>/<%= assetDir %>/js/min/plugins.js': ['assets/js/plugins/*.js'],
+					'<%= sourcePath %>/<%= assetDir %>/js/vendor/min/plugins.js': ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
 				}
 			}
 		},
