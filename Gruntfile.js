@@ -29,12 +29,6 @@ module.exports = function(grunt) {
 				files: '<%= sourcePath %>/<%= assetDir %>/scss/**/*.scss',
 				tasks: ['compass:dist', 'usebanner', 'copy:assets']
 			},
-			css: {
-				files: '<%= sourcePath %>/<%= assetDir %>/css/**/*.css',
-				options: {
-					livereload: true
-				}
-			},
 			html: {
 				files: '<%= sourcePath %>/<%= templateDir %>/**/*.hbs',
 				tasks: ['assemble', 'prettify:dist']
@@ -107,7 +101,7 @@ module.exports = function(grunt) {
 		  },
 		  site: {
 				options: {
-				  layout: 'default.hbs'
+					layout: 'default.hbs'
 				},
 				src: ['<%= sourcePath %>/<%= templateDir %>/*.hbs'],
 				dest: '<%= distPath %>'
