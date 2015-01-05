@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 			},
 			sass: {
 				files: '<%= sourcePath %>/<%= assetDir %>/scss/**/*.scss',
-				tasks: ['compass:dist', 'usebanner', 'copy:assets']
+				tasks: ['compass:dist', 'copy:assets', 'usebanner']
 			},
 			html: {
 				files: '<%= sourcePath %>/<%= templateDir %>/**/*.hbs',
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
 					linebreak: true
 				},
 				files: {
-					src: [ '<%= sourcePath %>/<%= assetDir %>/css/screen.css' ]
+					src: [ '<%= distPath %>/<%= assetDir %>/css/*.css' ]
 				}
 			}
 		},
@@ -146,6 +146,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-smushit');
 	grunt.loadNpmTasks('assemble');
 
-	grunt.registerTask('default', ['uglify', 'compass', 'usebanner', 'assemble', 'prettify:dist', 'copy:assets']);
+	grunt.registerTask('default', ['uglify', 'compass', 'assemble', 'prettify:dist', 'copy:assets', 'usebanner']);
 
 };
