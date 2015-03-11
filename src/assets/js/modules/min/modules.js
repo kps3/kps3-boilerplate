@@ -1,0 +1,1 @@
+KPS3.module.define("Page",["jquery"],function(a){"use strict";var b=function(){this.$w=a(window),this.init()};return b.prototype.init=function(){},new b});

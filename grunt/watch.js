@@ -9,6 +9,10 @@ module.exports = function (grunt, options) {
 			files: ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
 			tasks: ['uglify:jsPlugins', 'copy:assets']
 		},
+		jsModules: {
+			files: ['<%= sourcePath %>/<%= assetDir %>/js/modules/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/modules/min/*.js'],
+			tasks: ['uglify:jsModules', 'copy:assets']
+		},
 		sass: {
 			files: '<%= sourcePath %>/<%= assetDir %>/scss/**/*.scss',
 			tasks: ['compass:dist', 'copy:assets', 'usebanner']

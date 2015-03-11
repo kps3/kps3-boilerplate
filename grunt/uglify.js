@@ -26,6 +26,17 @@ module.exports = function (grunt, options) {
 			files: {
 				'<%= sourcePath %>/<%= assetDir %>/js/vendor/min/plugins.js': ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
 			}
+		},
+		jsModules: {
+			options : {
+				beautify : {
+					ascii_only : true,
+					quote_keys: true
+				}
+			},
+			files: {
+				'<%= sourcePath %>/<%= assetDir %>/js/modules/min/modules.js': ['<%= sourcePath %>/<%= assetDir %>/js/modules/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/modules/min/*.js'],
+			}
 		}
 	};
 
