@@ -1,0 +1,8 @@
+default:
+  - 'uglify'
+  - 'compass'
+  - 'assemble'
+  - 'prettify:dist'
+  - 'copy:assets'
+  - 'usebanner'
+
