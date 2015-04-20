@@ -3,6 +3,9 @@
   "description": "",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "postinstall": "grunt"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-compass": "~0.7.0",
