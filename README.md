@@ -1,6 +1,6 @@
 ## Front-End Boilerplate ##
 
-More details on how it works and the backstory can be found at: http://kps3.com/thots/our-front-end-development-boilerplate
+More details on how it works and the backstory can be found at: http://kps3.com/our-front-end-development-boilerplate/
 
 Prerequisites: Node (http://nodejs.org/), Compass (gem install compass), and Grunt (npm install -g grunt-cli)
 
