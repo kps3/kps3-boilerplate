@@ -42,6 +42,8 @@ publish
 # Distribution
 dist/*
 !dist/.gitkeep
+src/assets/css/*
+src/assets/js/min/*
 
 # Grunt
 node_modules
