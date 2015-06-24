@@ -44,6 +44,7 @@ dist/*
 !dist/.gitkeep
 src/assets/css/*
 src/assets/js/min/*
+src/assets/js/vendor/min/*
 
 # Grunt
 node_modules
