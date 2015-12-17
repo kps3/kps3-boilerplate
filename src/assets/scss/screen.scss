@@ -1,20 +1,20 @@
 @charset "UTF-8";
 
 // Main imports
-@import "compass",
-       	"elements/normalize";
+@import "compass";
+@import "elements/normalize";
 
 // Variables/Mixins/Functions
-@import "variables",
-        "utilities/utilities";
+@import "variables";
+@import "utilities/utilities";
 
 // CSS framework
 @import "foundation/foundation";
 
 // Site elements
-@import "elements/font-icons",
-        "elements/buttons",
-        "elements/forms";
+@import "elements/font-icons";
+@import "elements/buttons";
+@import "elements/forms";
 
 // Global styles
 @import "global";

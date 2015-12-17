@@ -1,151 +1,151 @@
 /*jshint node: true */
 
 module.exports = function(grunt) {
-	'use strict';
+  'use strict';
 
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
 
-		banner: '/** \n' +
-			' * Automatically Generated - DO NOT EDIT \n' +
-			' * <%= pkg.name %> / v<%= pkg.version %> / <%= grunt.template.today("yyyy-mm-dd") %> \n' +
-			' */ \n\n',
+    banner: '/** \n' +
+      ' * Automatically Generated - DO NOT EDIT \n' +
+      ' * <%= pkg.name %> / v<%= pkg.version %> / <%= grunt.template.today("yyyy-mm-dd") %> \n' +
+      ' */ \n\n',
 
-		sourcePath: 'src',
-		distPath: 'dist',
-		templateDir: 'templates',
-		assetDir: 'assets',
+    sourcePath: 'src',
+    distPath: 'dist',
+    templateDir: 'templates',
+    assetDir: 'assets',
 
-		watch: {
-			js: {
-				files: '<%= sourcePath %>/<%= assetDir %>/js/*.js',
-				tasks: ['uglify:js', 'copy:assets']
-			},
-			jsPlugins: {
-				files: ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
-				tasks: ['uglify:jsPlugins', 'copy:assets']
-			},
-			sass: {
-				files: '<%= sourcePath %>/<%= assetDir %>/scss/**/*.scss',
-				tasks: ['compass:dist', 'copy:assets', 'usebanner']
-			},
-			html: {
-				files: '<%= sourcePath %>/<%= templateDir %>/**/*.hbs',
-				tasks: ['assemble', 'prettify:dist']
-			}
-		},
+    watch: {
+      js: {
+        files: '<%= sourcePath %>/<%= assetDir %>/js/*.js',
+        tasks: ['uglify:js', 'copy:assets']
+      },
+      jsPlugins: {
+        files: ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
+        tasks: ['uglify:jsPlugins', 'copy:assets']
+      },
+      sass: {
+        files: '<%= sourcePath %>/<%= assetDir %>/scss/**/*.scss',
+        tasks: ['compass:dist', 'copy:assets', 'usebanner']
+      },
+      html: {
+        files: '<%= sourcePath %>/<%= templateDir %>/**/*.hbs',
+        tasks: ['assemble', 'prettify:dist']
+      }
+    },
 
-		compass: {
-			dist: {
-				options: {
-					config: 'config.rb'
-				}
-			}
-		},
+    compass: {
+      dist: {
+        options: {
+          config: 'config.rb'
+        }
+      }
+    },
 
-		uglify: {
-			js: {
-				options : {
-					banner: '<%= banner %>',
-					beautify : {
-						ascii_only : true,
-						quote_keys: true
-					}
-				},
-				files: [{
-					expand: true,
-					cwd: '<%= sourcePath %>/<%= assetDir %>/js',
-					src: '*.js',
-					dest: '<%= sourcePath %>/<%= assetDir %>/js/min'
-				}]
-			},
-			jsPlugins: {
-				options : {
-					beautify : {
-						ascii_only : true,
-						quote_keys: true
-					}
-				},
-				files: {
-					'<%= sourcePath %>/<%= assetDir %>/js/vendor/min/plugins.js': ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
-				}
-			}
-		},
+    uglify: {
+      js: {
+        options : {
+          banner: '<%= banner %>',
+          beautify : {
+            ascii_only : true,
+            quote_keys: true
+          }
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= sourcePath %>/<%= assetDir %>/js',
+          src: '*.js',
+          dest: '<%= sourcePath %>/<%= assetDir %>/js/min'
+        }]
+      },
+      jsPlugins: {
+        options : {
+          beautify : {
+            ascii_only : true,
+            quote_keys: true
+          }
+        },
+        files: {
+          '<%= sourcePath %>/<%= assetDir %>/js/vendor/min/plugins.js': ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
+        }
+      }
+    },
 
-		smushit: {
-			dist: {
-				src:  ['<%= sourcePath %>/<%= assetDir %>/img/**/*.png', '<%= sourcePath %>/<%= assetDir %>/img/**/*.jpg'],
-				dest: '<%= distPath %>/<%= assetDir %>/img'
-			}
-		},
+    smushit: {
+      dist: {
+        src:  ['<%= sourcePath %>/<%= assetDir %>/img/**/*.png', '<%= sourcePath %>/<%= assetDir %>/img/**/*.jpg'],
+        dest: '<%= distPath %>/<%= assetDir %>/img'
+      }
+    },
 
-		usebanner: {
-			screenCSS: {
-				options: {
-					position: 'top',
-					banner: '<%= banner %>',
-					linebreak: true
-				},
-				files: {
-					src: [ '<%= distPath %>/<%= assetDir %>/css/*.css' ]
-				}
-			}
-		},
+    usebanner: {
+      screenCSS: {
+        options: {
+          position: 'top',
+          banner: '<%= banner %>',
+          linebreak: true
+        },
+        files: {
+          src: [ '<%= distPath %>/<%= assetDir %>/css/*.css' ]
+        }
+      }
+    },
 
-		assemble: {
-		  options: {
-				assets: '<%= distPath %>/<%= assetDir %>',
-				layoutdir: '<%= sourcePath %>/<%= templateDir %>/layouts',
-				partials: ['<%= sourcePath %>/<%= templateDir %>/partials/**/*.hbs'],
-				flatten: true,
-		  },
-		  site: {
-				options: {
-					layout: 'default.hbs'
-				},
-				src: ['<%= sourcePath %>/<%= templateDir %>/*.hbs'],
-				dest: '<%= distPath %>'
-		  }
-		},
+    assemble: {
+      options: {
+        assets: '<%= distPath %>/<%= assetDir %>',
+        layoutdir: '<%= sourcePath %>/<%= templateDir %>/layouts',
+        partials: ['<%= sourcePath %>/<%= templateDir %>/partials/**/*.hbs'],
+        flatten: true,
+      },
+      site: {
+        options: {
+          layout: 'default.hbs'
+        },
+        src: ['<%= sourcePath %>/<%= templateDir %>/*.hbs'],
+        dest: '<%= distPath %>'
+      }
+    },
 
-		copy: {
-			assets: {
-				files: [{
-					expand: true,
-					cwd: '<%= sourcePath %>/<%= assetDir %>/',
-					src: ['**', '!scss/**'],
-					dest: '<%= distPath %>/<%= assetDir %>/'
-				}]
-			}
-		},
+    copy: {
+      assets: {
+        files: [{
+          expand: true,
+          cwd: '<%= sourcePath %>/<%= assetDir %>/',
+          src: ['**', '!scss/**'],
+          dest: '<%= distPath %>/<%= assetDir %>/'
+        }]
+      }
+    },
 
-		prettify: {
-			options: {
-				indent: 1,
-				indent_char: '  ',
-				brace_style: 'expand',
-				unformatted: ['a', 'code', 'pre']
-			},
-			dist: {
-				expand: true,
-				cwd: '<%= distPath %>',
-				ext: '.html',
-				src: ['*.html'],
-				dest: '<%= distPath %>'
-			}
-		}
+    prettify: {
+      options: {
+        indent: 1,
+        indent_char: '  ',
+        brace_style: 'expand',
+        unformatted: ['a', 'code', 'pre']
+      },
+      dist: {
+        expand: true,
+        cwd: '<%= distPath %>',
+        ext: '.html',
+        src: ['*.html'],
+        dest: '<%= distPath %>'
+      }
+    }
 
-	});
+  });
 
-	grunt.loadNpmTasks('grunt-contrib-compass');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-prettify');
-	grunt.loadNpmTasks('grunt-banner');
-	grunt.loadNpmTasks('grunt-smushit');
-	grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-prettify');
+  grunt.loadNpmTasks('grunt-banner');
+  grunt.loadNpmTasks('grunt-smushit');
+  grunt.loadNpmTasks('assemble');
 
-	grunt.registerTask('default', ['uglify', 'compass', 'assemble', 'prettify:dist', 'copy:assets', 'usebanner']);
+  grunt.registerTask('default', ['uglify', 'compass', 'assemble', 'prettify:dist', 'copy:assets', 'usebanner']);
 
 };
