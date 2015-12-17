@@ -1,7 +1,7 @@
 /* global jQuery */
 
 (function ($) {
-	'use strict';
+  'use strict';
 
 
 })(jQuery);
