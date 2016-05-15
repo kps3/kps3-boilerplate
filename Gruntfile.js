@@ -72,13 +72,6 @@ module.exports = function(grunt) {
       }
     },
 
-    smushit: {
-      dist: {
-        src:  ['<%= sourcePath %>/<%= assetDir %>/img/**/*.png', '<%= sourcePath %>/<%= assetDir %>/img/**/*.jpg'],
-        dest: '<%= distPath %>/<%= assetDir %>/img'
-      }
-    },
-
     usebanner: {
       screenCSS: {
         options: {
@@ -143,7 +136,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-prettify');
   grunt.loadNpmTasks('grunt-banner');
-  grunt.loadNpmTasks('grunt-smushit');
   grunt.loadNpmTasks('assemble');
 
   grunt.registerTask('default', ['uglify', 'compass', 'assemble', 'prettify:dist', 'copy:assets', 'usebanner']);
