@@ -14,6 +14,8 @@ module.exports = function(grunt) {
     sourcePath: 'src',
     distPath: 'dist',
     templateDir: 'templates',
+    imageDir: 'img',
+    fontDir: 'fonts',
     assetDir: 'assets',
 
     watch: {
@@ -24,6 +26,14 @@ module.exports = function(grunt) {
       jsPlugins: {
         files: ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
         tasks: ['uglify:jsPlugins', 'copy:assets']
+      },
+      images: {
+        files: '<%= sourcePath %>/<%= assetDir %>/<%= imageDir %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
+        tasks: ['copy:assets']
+      },
+      fonts: {
+        files: '<%= sourcePath %>/<%= assetDir %>/<%= fontDir %>/**/*.{eot,svg,ttf,woff}',
+        tasks: ['copy:assets']
       },
       sass: {
         files: '<%= sourcePath %>/<%= assetDir %>/scss/**/*.scss',
@@ -127,7 +137,6 @@ module.exports = function(grunt) {
         dest: '<%= distPath %>'
       }
     }
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-compass');
