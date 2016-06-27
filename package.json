@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "grunt"
+    "postinstall": "grunt",
+    "start": "grunt watch",
+    "build": "grunt"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
