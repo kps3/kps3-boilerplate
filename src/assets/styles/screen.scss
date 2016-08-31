@@ -2,7 +2,7 @@
 
 // Main imports
 @import "compass";
-@import "elements/normalize";
+@import "normalize";
 
 // Variables/Mixins/Functions
 @import "variables";
@@ -11,19 +11,13 @@
 // CSS framework
 @import "foundation/foundation";
 
-// Site elements
-@import "elements/font-icons";
-@import "elements/buttons";
-@import "elements/forms";
-
 // Global styles
 @import "global";
 
-// Partial styles
-// @import "partials/header";
-
-// Page styles
-// @import "pages/homepage";
+// Components
+@import "components/icon";
+@import "components/button";
+@import "components/form";
 
 // Media Queries
 @import "media-queries";
