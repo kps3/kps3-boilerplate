@@ -2,7 +2,6 @@
 $color-white: #ffffff;
 $color-black: #000000;
 
-
 // Font weights
 $fw-light: 300;
 $fw-regular: 400;
@@ -12,8 +11,12 @@ $fw-medium: 500;
 $fw-semibold: 600;
 $fw-bold: 700;
 
-
 // Fonts
 $ff-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-
+// Media query sizes
+$breakpoints: (
+  'small': 768px,
+  'medium': 1280px,
+  'large': 1440px,
+);
