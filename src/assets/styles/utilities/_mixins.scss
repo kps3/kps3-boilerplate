@@ -1,9 +1,3 @@
-@mixin inline-block {
-  display:inline-block;
-  *display:inline;
-  zoom:1;
-}
-
 @mixin fontfix {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -37,9 +31,9 @@
 }
 
 @mixin animation($value) {
-          animation:$value;
-     -moz-animation:$value;
-  -webkit-animation:$value;
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  animation: $value;
 }
 
 // keyframes mixin

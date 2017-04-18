@@ -1,7 +1,6 @@
-/*jshint node: true */
+'use strict';
 
 module.exports = function(grunt) {
-  'use strict';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -14,41 +13,48 @@ module.exports = function(grunt) {
     sourcePath: 'src',
     distPath: 'dist',
     templateDir: 'templates',
-    imageDir: 'img',
-    fontDir: 'fonts',
     assetDir: 'assets',
+    styleDir: 'styles',
+    scriptDir: 'scripts',
+    imageDir: 'images',
+    fontDir: 'fonts',
 
     watch: {
       js: {
-        files: '<%= sourcePath %>/<%= assetDir %>/js/*.js',
-        tasks: ['uglify:js', 'copy:assets']
+        files: '<%= sourcePath %>/<%= assetDir %>/<%= scriptDir %>/*.js',
+        tasks: ['copy:scripts', 'uglify:js']
       },
       jsPlugins: {
-        files: ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
-        tasks: ['uglify:jsPlugins', 'copy:assets']
+        files: ['<%= sourcePath %>/<%= assetDir %>/<%= scriptDir %>/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/<%= scriptDir %>/vendor/min/*.js'],
+        tasks: ['copy:scripts', 'uglify:jsPlugins']
       },
       images: {
         files: '<%= sourcePath %>/<%= assetDir %>/<%= imageDir %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
-        tasks: ['copy:assets']
+        tasks: ['copy:images']
       },
       fonts: {
         files: '<%= sourcePath %>/<%= assetDir %>/<%= fontDir %>/**/*.{eot,svg,ttf,woff}',
-        tasks: ['copy:assets']
+        tasks: ['copy:fonts']
       },
       sass: {
-        files: '<%= sourcePath %>/<%= assetDir %>/scss/**/*.scss',
-        tasks: ['compass:dist', 'copy:assets', 'usebanner']
+        files: '<%= sourcePath %>/<%= assetDir %>/<%= styleDir %>/**/*.scss',
+        tasks: ['compass:dist', 'usebanner']
       },
       html: {
         files: '<%= sourcePath %>/<%= templateDir %>/**/*.hbs',
-        tasks: ['assemble', 'prettify:dist']
+        tasks: ['assemble']
       }
     },
 
     compass: {
       dist: {
         options: {
-          config: 'config.rb'
+          sassDir: '<%= sourcePath %>/<%= assetDir %>/<%= styleDir %>',
+          cssDir: '<%= distPath %>/<%= assetDir %>/<%= styleDir %>',
+          imagesDir: '<%= sourcePath %>/<%= assetDir %>/<%= imageDir %>',
+          javascriptsDir: '<%= sourcePath %>/<%= assetDir %>/<%= scriptDir %>',
+          fontsDir: '<%= sourcePath %>/<%= assetDir %>/<%= fontDir %>',
+          environment: 'production'
         }
       }
     },
@@ -64,9 +70,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= sourcePath %>/<%= assetDir %>/js',
+          cwd: '<%= distPath %>/<%= assetDir %>/<%= scriptDir %>',
           src: '*.js',
-          dest: '<%= sourcePath %>/<%= assetDir %>/js/min'
+          dest: '<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/min'
         }]
       },
       jsPlugins: {
@@ -77,20 +83,20 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          '<%= sourcePath %>/<%= assetDir %>/js/vendor/min/plugins.js': ['<%= sourcePath %>/<%= assetDir %>/js/vendor/**/*.js', '!<%= sourcePath %>/<%= assetDir %>/js/vendor/min/*.js'],
+          '<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/min/plugins.js': ['<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/**/*.js', '!<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/min/*.js'],
         }
       }
     },
 
     usebanner: {
-      screenCSS: {
+      dist: {
         options: {
           position: 'top',
           banner: '<%= banner %>',
           linebreak: true
         },
         files: {
-          src: [ '<%= distPath %>/<%= assetDir %>/css/*.css' ]
+          src: [ '<%= distPath %>/<%= assetDir %>/<%= styleDir %>/*.css' ]
         }
       }
     },
@@ -99,7 +105,7 @@ module.exports = function(grunt) {
       options: {
         assets: '<%= distPath %>/<%= assetDir %>',
         layoutdir: '<%= sourcePath %>/<%= templateDir %>/layouts',
-        partials: ['<%= sourcePath %>/<%= templateDir %>/partials/**/*.hbs'],
+        partials: ['<%= sourcePath %>/<%= templateDir %>/components/**/*.hbs'],
         flatten: true,
       },
       site: {
@@ -112,41 +118,51 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      assets: {
+      fonts: {
         files: [{
           expand: true,
-          cwd: '<%= sourcePath %>/<%= assetDir %>/',
-          src: ['**', '!scss/**'],
-          dest: '<%= distPath %>/<%= assetDir %>/'
+          cwd: '<%= sourcePath %>/<%= assetDir %>/<%= fontDir %>/',
+          src: ['**'],
+          dest: '<%= distPath %>/<%= assetDir %>/<%= fontDir %>/'
+        }]
+      },
+      images: {
+        files: [{
+          expand: true,
+          cwd: '<%= sourcePath %>/<%= assetDir %>/<%= imageDir %>/',
+          src: ['**'],
+          dest: '<%= distPath %>/<%= assetDir %>/<%= imageDir %>/'
+        }]
+      },
+      scripts: {
+        files: [{
+          expand: true,
+          cwd: '<%= sourcePath %>/<%= assetDir %>/<%= scriptDir %>/',
+          src: ['**'],
+          dest: '<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/'
         }]
       }
     },
 
-    prettify: {
-      options: {
-        indent: 1,
-        indent_char: '  ',
-        brace_style: 'expand',
-        unformatted: ['a', 'code', 'pre']
-      },
-      dist: {
-        expand: true,
-        cwd: '<%= distPath %>',
-        ext: '.html',
-        src: ['*.html'],
-        dest: '<%= distPath %>'
-      }
+    clean: {
+      dist: ['<%= distPath %>/**/*', '!<%= distPath %>/.gitignore']
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-prettify');
-  grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('grunt-banner');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['uglify', 'compass', 'assemble', 'prettify:dist', 'copy:assets', 'usebanner']);
-
+  grunt.registerTask('default', [
+    'clean',
+    'copy',
+    'uglify',
+    'compass',
+    'assemble',
+    'usebanner'
+  ]);
 };
