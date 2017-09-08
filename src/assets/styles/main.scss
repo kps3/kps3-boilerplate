@@ -1,23 +1,20 @@
 @charset "UTF-8";
 
-// Main imports
+// Main
+@import "variables";
+@import "mixins";
+
+// Vendor
 @import "bourbon";
 @import "include-media";
-
-// Variables/Mixins/Functions
-@import "variables";
-@import "utilities/utilities";
-
-// Grid
 @import "neat";
 
-// Reset
-@import "normalize";
+// Vendor
+@import "vendor/normalize";
 
-// Global styles
+// Globals
 @import "global";
 
 // Components
 @import "components/icon";
 @import "components/button";
-@import "components/form";
