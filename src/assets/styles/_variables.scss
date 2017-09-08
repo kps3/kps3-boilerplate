@@ -14,6 +14,15 @@ $fw-bold: 700;
 // Fonts
 $ff-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+// Grid
+$gutter-width: 12px;
+$grid-width: 1440px;
+
+$neat-grid: (
+  columns: 12,
+  gutter: $gutter-width,
+);
+
 // Media query sizes
 $breakpoints: (
   'small': 768px,

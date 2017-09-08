@@ -1,0 +1,15 @@
+html * {
+  @include box-sizing(border-box);
+}
+
+.container {
+  @include grid-container;
+  margin: 0 auto;
+  max-width: $grid-width;
+  position: relative;
+
+  .container {
+    margin: 0 (-$gutter-width);
+    max-width: none;
+  }
+}
