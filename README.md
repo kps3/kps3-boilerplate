@@ -7,14 +7,14 @@ More details on how it works and the backstory can be found at: http://kps3.com/
 
 ## Features
 
+- [Sass](http://sass-lang.com/)
 - [Neat](https://neat.bourbon.io/)
-- [Compass](http://compass-style.org/)
 - [Grunt](http://gruntjs.com/)
 - [Yarn](https://yarnpkg.com/)
 
 ## Getting Started
 
-Make sure you have [Yarn](https://yarnpkg.com/), [Compass](http://compass-style.org/), and [Grunt](http://gruntjs.com/) installed.
+Make sure you have [Yarn](https://yarnpkg.com/) and [Grunt](http://gruntjs.com/) installed.
 
 ```
 $ git clone https://github.com/kps3/kps3-boilerplate.git

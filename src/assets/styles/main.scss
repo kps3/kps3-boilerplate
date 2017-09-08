@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 // Main imports
-@import "compass";
-@import "normalize";
+@import "bourbon";
+@import "include-media";
 
 // Variables/Mixins/Functions
 @import "variables";
@@ -10,6 +10,9 @@
 
 // Grid
 @import "neat";
+
+// Reset
+@import "normalize";
 
 // Global styles
 @import "global";

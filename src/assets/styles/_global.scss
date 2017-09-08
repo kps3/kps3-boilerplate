@@ -1,7 +1,3 @@
-html * {
-  @include box-sizing(border-box);
-}
-
 .container {
   @include grid-container;
   margin: 0 auto;
