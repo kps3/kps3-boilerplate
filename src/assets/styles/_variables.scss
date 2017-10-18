@@ -12,7 +12,16 @@ $fw-semibold: 600;
 $fw-bold: 700;
 
 // Fonts
-$ff-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$ff-helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Grid
+$gutter-width: 15px;
+$grid-width: 1440px;
+
+$neat-grid: (
+  columns: 12,
+  gutter: $gutter-width,
+);
 
 // Media query sizes
 $breakpoints: (

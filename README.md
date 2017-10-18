@@ -5,21 +5,26 @@ This is the front-end boilerplate that we use at
 
 More details on how it works and the backstory can be found at: http://kps3.com/our-front-end-development-boilerplate/
 
-## Requirements
+## Features
 
-You'll need [Node](https://nodejs.org/), [Compass](http://compass-style.org/), and [Grunt](http://gruntjs.com/) installed.
+- [Sass](http://sass-lang.com/)
+- [Neat](https://neat.bourbon.io/)
+- [Grunt](http://gruntjs.com/)
+- [Yarn](https://yarnpkg.com/)
 
 ## Getting Started
 
+Make sure you have [Yarn](https://yarnpkg.com/) and [Grunt](http://gruntjs.com/) installed.
+
 ```
-$ git clone https://github.com/kps3/kps3.boilerplate.git
-$ cd kps3.boilerplate
-$ npm install
+$ git clone https://github.com/kps3/kps3-boilerplate.git
+$ cd kps3-boilerplate
+$ yarn
 ```
 
 ## Usage
 
 The following commands are available:
 
-- `grunt` to build the project
-- `grunt watch` to watch files for changes and automatically rebuild the project
+- `yarn build` to build the project
+- `yarn start` to watch files for changes and automatically rebuild the project

@@ -2,6 +2,12 @@
 
 module.exports = function(grunt) {
 
+  var sassIncludePaths = [].concat(
+    require('bourbon').includePaths,
+    require('bourbon-neat').includePaths,
+    require('include-media').includePath
+  );
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -38,7 +44,7 @@ module.exports = function(grunt) {
       },
       sass: {
         files: '<%= sourcePath %>/<%= assetDir %>/<%= styleDir %>/**/*.scss',
-        tasks: ['compass:dist', 'usebanner']
+        tasks: ['sass', 'usebanner']
       },
       html: {
         files: '<%= sourcePath %>/<%= templateDir %>/**/*.hbs',
@@ -46,16 +52,17 @@ module.exports = function(grunt) {
       }
     },
 
-    compass: {
+    sass: {
+      options: {
+        includePaths: sassIncludePaths,
+        outputStyle: 'compressed',
+        sourceMap: true
+      },
       dist: {
-        options: {
-          sassDir: '<%= sourcePath %>/<%= assetDir %>/<%= styleDir %>',
-          cssDir: '<%= distPath %>/<%= assetDir %>/<%= styleDir %>',
-          imagesDir: '<%= sourcePath %>/<%= assetDir %>/<%= imageDir %>',
-          javascriptsDir: '<%= sourcePath %>/<%= assetDir %>/<%= scriptDir %>',
-          fontsDir: '<%= sourcePath %>/<%= assetDir %>/<%= fontDir %>',
-          environment: 'production'
-        }
+        files: [{
+          src: ['<%= sourcePath %>/<%= assetDir %>/<%= styleDir %>/main.scss'],
+          dest: '<%= distPath %>/<%= assetDir %>/<%= styleDir %>/main.css'
+        }]
       }
     },
 
@@ -83,7 +90,10 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          '<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/min/plugins.js': ['<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/**/*.js', '!<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/min/*.js'],
+          '<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/min/plugins.js': [
+            '<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/**/*.js',
+            '!<%= distPath %>/<%= assetDir %>/<%= scriptDir %>/vendor/min/*.js'
+          ]
         }
       }
     },
@@ -152,16 +162,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('assemble');
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-sass');
 
   grunt.registerTask('default', [
     'clean',
     'copy',
     'uglify',
-    'compass',
+    'sass',
     'assemble',
     'usebanner'
   ]);
