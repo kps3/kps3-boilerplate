@@ -14,7 +14,7 @@ More details on how it works and the backstory can be found at: http://kps3.com/
 
 ## Getting Started
 
-Make sure you have [Yarn](https://yarnpkg.com/) and [Grunt](http://gruntjs.com/) installed.
+Make sure you have [Yarn](https://yarnpkg.com/) installed.
 
 ```
 $ git clone https://github.com/kps3/kps3-boilerplate.git
