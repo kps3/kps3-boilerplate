@@ -26,5 +26,5 @@ $ yarn
 
 The following commands are available:
 
-- `grunt` to build the project
-- `grunt watch` to watch files for changes and automatically rebuild the project
+- `yarn build` to build the project
+- `yarn start` to watch files for changes and automatically rebuild the project
