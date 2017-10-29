@@ -3,7 +3,6 @@
 module.exports = function(grunt) {
 
   var sassIncludePaths = [].concat(
-    require('bourbon').includePaths,
     require('bourbon-neat').includePaths,
     require('include-media').includePath
   );
@@ -44,11 +43,20 @@ module.exports = function(grunt) {
       },
       sass: {
         files: '<%= sourcePath %>/<%= assetDir %>/<%= styleDir %>/**/*.scss',
-        tasks: ['sass', 'usebanner']
+        tasks: ['sass', 'autoprefixer', 'usebanner']
       },
       html: {
         files: '<%= sourcePath %>/<%= templateDir %>/**/*.hbs',
         tasks: ['assemble']
+      }
+    },
+
+    autoprefixer: {
+      dist: {
+        files: [{
+          src: ['<%= distPath %>/<%= assetDir %>/<%= styleDir %>/main.css'],
+          dest: '<%= distPath %>/<%= assetDir %>/<%= styleDir %>/main.css'
+        }]
       }
     },
 
@@ -160,6 +168,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -172,6 +181,7 @@ module.exports = function(grunt) {
     'copy',
     'uglify',
     'sass',
+    'autoprefixer',
     'assemble',
     'usebanner'
   ]);
