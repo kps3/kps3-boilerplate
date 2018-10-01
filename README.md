@@ -10,7 +10,6 @@ More details on how it works and the backstory can be found at: http://kps3.com/
 - [Sass](http://sass-lang.com/)
 - [Neat](https://neat.bourbon.io/)
 - [Grunt](http://gruntjs.com/)
-- [Yarn](https://yarnpkg.com/)
 
 ## Getting Started
 
@@ -19,12 +18,12 @@ Make sure you have [Yarn](https://yarnpkg.com/) installed.
 ```
 $ git clone https://github.com/kps3/kps3-boilerplate.git
 $ cd kps3-boilerplate
-$ yarn
+$ npm install
 ```
 
 ## Usage
 
 The following commands are available:
 
-- `yarn build` to build the project
-- `yarn start` to watch files for changes and automatically rebuild the project
+- `npm run build` to build the project
+- `npm start` to watch files for changes and automatically rebuild the project

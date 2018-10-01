@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function(grunt) {
-
-  var sassIncludePaths = [].concat(
+  const sass = require('node-sass');
+  const sassIncludePaths = [].concat(
     require('bourbon-neat').includePaths,
     require('include-media').includePath
   );
@@ -63,6 +63,7 @@ module.exports = function(grunt) {
     sass: {
       options: {
         includePaths: sassIncludePaths,
+        implementation: sass,
         outputStyle: 'compressed',
         sourceMap: true
       },
@@ -167,7 +168,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('grunt-assemble');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-clean');
